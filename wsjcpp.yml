@@ -29,3 +29,7 @@ distribution:
   - source-file: "src/fast_fourier_transform_wiki.cpp"
     target-file: "fast_fourier_transform_wiki.cpp"
     type: "source-code"
+unit-tests:
+  cases:
+    - name: "FftWiki"
+      description: ""

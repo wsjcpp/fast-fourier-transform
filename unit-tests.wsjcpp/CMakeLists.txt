@@ -34,6 +34,8 @@ list (APPEND WSJCPP_SOURCES "../src/fast_fourier_transform_wiki.cpp")
 
 # unit-tests
 list (APPEND WSJCPP_INCLUDE_DIRS "src")
+list (APPEND WSJCPP_SOURCES "../unit-tests.wsjcpp/src/unit_test_fft_wiki.h")
+list (APPEND WSJCPP_SOURCES "../unit-tests.wsjcpp/src/unit_test_fft_wiki.cpp")
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.user-custom.txt)
 
