@@ -1,3 +1,7 @@
+tmp/
+.wsjcpp/*
+fast-fourier-transform
+
 # Prerequisites
 *.d
 
