@@ -3,12 +3,12 @@
 
 #include <wsjcpp_unit_tests.h>
 
-// Description: TODO
 class UnitTestFftWiki : public WsjcppUnitTestBase {
     public:
         UnitTestFftWiki();
-        virtual void init();
-        virtual bool run();
+        virtual bool doBeforeTest() override;
+        virtual void executeTest() override;
+        virtual bool doAfterTest() override;
 };
 
 #endif // UNIT_TEST_FFT_WIKI_H

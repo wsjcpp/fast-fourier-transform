@@ -1,5 +1,5 @@
 name: "fast-fourier-transform"
-version: "v0.0.1"
+version: "v0.0.2"
 cmake_minimum_required: "3.0"
 cmake_cxx_standard: "11"
 description: "FFT C++ Implementation"
@@ -17,7 +17,7 @@ keywords:
 
 dependencies:
   - name: "wsjcpp-core"
-    version: "v0.1.1"
+    version: "v0.2.0"
     url: "https://github.com/wsjcpp/wsjcpp-core:master"
     origin: "https://github.com/"
     installation-dir: "./src.wsjcpp/wsjcpp_core"
@@ -29,6 +29,7 @@ distribution:
   - source-file: "src/fast_fourier_transform_wiki.cpp"
     target-file: "fast_fourier_transform_wiki.cpp"
     type: "source-code"
+
 unit-tests:
   cases:
     - name: "FftWiki"

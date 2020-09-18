@@ -12,14 +12,14 @@ UnitTestFftWiki::UnitTestFftWiki()
 
 // ---------------------------------------------------------------------
 
-void UnitTestFftWiki::init() {
+bool UnitTestFftWiki::doBeforeTest() {
     // nothing
+    return true;
 }
 
 // ---------------------------------------------------------------------
 
-bool UnitTestFftWiki::run() {
-    bool bTestSuccess = true;
+void UnitTestFftWiki::executeTest() {
 
     int nCount = 64;
     double *pSignal = new double[nCount];
@@ -38,9 +38,9 @@ bool UnitTestFftWiki::run() {
         pFFT[i] = 0;
     }
     FastFourierTransformWiki fft;
-    long t0 = WsjcppCore::currentTime_milliseconds();
+    long t0 = WsjcppCore::getCurrentTimeInMilliseconds();
     fft.analitics(pSignal, pFFT, nCount, nCount);
-    long t1 = WsjcppCore::currentTime_milliseconds();
+    long t1 = WsjcppCore::getCurrentTimeInMilliseconds();
     WsjcppLog::info(TAG, "Calculation time: " + std::to_string(t1-t0) + " ms");
     
     float *pOffsetSin = new float[nCount/2];
@@ -55,11 +55,11 @@ bool UnitTestFftWiki::run() {
         pAmplitSin[i] = float(n)/n_floor;
     }
     for (int i = 0; i < nCount/2; i++) {
-        compareD(bTestSuccess, "pOffsetSin[" + std::to_string(i) + "]", pOffsetSin[i], 0.0);
+        compare("pOffsetSin[" + std::to_string(i) + "]", pOffsetSin[i], 0.0);
     }
 
     for (int i = 0; i < nCount/4; i++) {
-        compareD(bTestSuccess, "pAmplitSin[" + std::to_string(i) + "]", pAmplitSin[i*2 + 1], 0.0);
+        compare("pAmplitSin[" + std::to_string(i) + "]", pAmplitSin[i*2 + 1], 0.0);
     }
     std::vector<std::string> vAmpl;
     vAmpl.push_back("0.637644");
@@ -96,7 +96,7 @@ bool UnitTestFftWiki::run() {
     vAmpl.push_back("0.000000");
     
     for (int i = 0; i < nCount/2; i++) {
-        compareS(bTestSuccess, "pAmplitSin[" + std::to_string(i) + "]", std::to_string(pAmplitSin[i]), vAmpl[i]);
+        compare("pAmplitSin[" + std::to_string(i) + "]", std::to_string(pAmplitSin[i]), vAmpl[i]);
     }
 
     /*
@@ -109,6 +109,11 @@ bool UnitTestFftWiki::run() {
     }
     WsjcppLog::info(TAG, sToLog);
     */
-    return bTestSuccess;
 }
 
+// ---------------------------------------------------------------------
+
+bool UnitTestFftWiki::doAfterTest() {
+    // nothing
+    return true;
+}
